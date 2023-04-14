@@ -19,7 +19,7 @@
 	</style>
 </head>
 <body lang="en-US" link="#000080" vlink="#800000" dir="ltr">
-<div title="header"><p style="margin-bottom: 0in; line-height: 100%"><span class="sd-abs-pos" style="position: absolute; top: 1.54in; left: 0.2in; width: 665px"><img src="FormatDescription_wip_html_4c70ede2507c0bcc.gif" name="PowerPlusWaterMarkObject" alt="PowerPlusWaterMarkObject" align="left"/>
+<div title="header"><p style="margin-bottom: 0in; line-height: 100%"><span class="sd-abs-pos" style="position: absolute; top: 1.54in; left: 0.2in; width: 665px"><img src="FormatDescription_wip_html_7ae6ada9d0672dd4.gif" name="PowerPlusWaterMarkObject" alt="PowerPlusWaterMarkObject" align="left"/>
 </span><br/>
 
 	</p>
@@ -224,8 +224,10 @@ level in the file:</p>
 		</td>
 		<td width="9%" style="border: none; padding: 0in"><p>float</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p>Approximate
-			geographical Longitude, in degrees East, of the receiver.</p>
+		<td width="46%" style="border: none; padding: 0in"><p style="margin-bottom: 0in">
+			Approximate geographical Longitude, in degrees East, of the
+			receiver.</p>
+			<p>Should be accurate to 0.01 degrees or better.</p>
 		</td>
 		<td width="13%" style="border: none; padding: 0in"><p>Yes</p>
 		</td>
@@ -235,8 +237,10 @@ level in the file:</p>
 		</td>
 		<td width="9%" style="border: none; padding: 0in"><p>float</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p>Approximate
-			geographical Latitude, in degrees North, of the receiver.</p>
+		<td width="46%" style="border: none; padding: 0in"><p style="margin-bottom: 0in">
+			Approximate geographical Latitude, in degrees North, of the
+			receiver.</p>
+			<p>Should be accurate to 0.01 degrees or better.</p>
 		</td>
 		<td width="13%" style="border: none; padding: 0in"><p>Yes</p>
 		</td>
@@ -328,11 +332,13 @@ level in the file:</p>
 	<tr valign="top">
 		<td width="32%" style="border: none; padding: 0in"><p>Constellations</p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>String[]</p>
+		<td width="9%" style="border: none; padding: 0in"><p>String</p>
 		</td>
 		<td width="46%" style="border: none; padding: 0in"><p style="margin-bottom: 0in">
-			An array of strings specifying which constellations are allowed in
-			this file. (i.e. other constellation are excluded)</p>
+			A string specifying which constellations are allowed in this file.
+			(i.e. other constellation are excluded)</p>
+			<p style="margin-bottom: 0in">Each constellation is specified with
+			a single character:</p>
 			<p style="margin-bottom: 0in">'G' = GPS</p>
 			<p style="margin-bottom: 0in">'E' = Galileo</p>
 			<p style="margin-bottom: 0in">'R' = GLONASS</p>
@@ -1338,8 +1344,8 @@ associated with each dataset:</p>
 			not have a physical unit.</p>
 			<p>E.g: &quot;<font face="Latin Modern Mono">radians</font>&quot;</p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="13%" style="border: none; padding: 0in"><p align="center">
+			Sometimes</p>
 		</td>
 	</tr>
 </table>
