@@ -55,12 +55,13 @@ hdf5File.attrs["SLMHeight"] = float(Hipp)*1000 # in meters
 datasetShape = (len(ismrfile),);
 
 #Compute unix time
+leapsec = datetime.timedelta(seconds=9) #leap seconds between 1970 (unix epoch) and  1980(GPS epoch)
 gpsTime = pd.Series([])
 gpsEpoch = datetime.datetime(1980,1,6,0,0,0)
 unixEpoch = datetime.datetime(1970,1,1,0,0,0)
 gpsDT = ismrfile.TOW+ismrfile.GPSweek*604800
 gpsTime = [gpsEpoch + datetime.timedelta(seconds=x) for x in gpsDT]
-unixTime = [(x - unixEpoch).total_seconds() for x in gpsTime]
+unixTime = [(x - unixEpoch+leapsec).total_seconds() for x in gpsTime]
 
 #Computer IPP lat and lon
 [lonIPP,latIPP] = ismrIPP.IPP(ismrfile,station[0],Hipp)
