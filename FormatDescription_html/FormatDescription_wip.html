@@ -19,13 +19,13 @@
 	</style>
 </head>
 <body lang="en-US" link="#000080" vlink="#800000" dir="ltr">
-<div title="header"><p style="margin-bottom: 0in; line-height: 100%"><span class="sd-abs-pos" style="position: absolute; top: 1.54in; left: 0.2in; width: 665px"><img src="FormatDescription_wip_html_7ae6ada9d0672dd4.gif" name="PowerPlusWaterMarkObject" alt="PowerPlusWaterMarkObject" align="left"/>
+<div title="header"><p style="margin-bottom: 0in; line-height: 100%"><span class="sd-abs-pos" style="position: absolute; top: 1.35in; left: 0.2in; width: 665px"><img src="FormatDescription_wip_html_ba0da879c747113f.gif" name="PowerPlusWaterMarkObject_0" alt="PowerPlusWaterMarkObject_0" align="left"/>
 </span><br/>
 
 	</p>
 </div><p align="center" style="margin-top: 0.17in; margin-bottom: 0.08in; line-height: 100%; page-break-after: avoid">
 <font face="Liberation Sans, sans-serif"><font size="6" style="font-size: 28pt"><b>Binary
-Scintillation Exchange Format (BiScEF) - Version #.#</b></font></font></p>
+Scintillation Exchange Format (BiScEF) - Version 0.2</b></font></font></p>
 <p style="margin-bottom: 0in; line-height: 100%">The format is
 intended to be used for archiving and exchange of scintillation data.
 It is intended to be flexible and extensible. Although it defines
@@ -73,8 +73,8 @@ files)</p>
 </p>
 <p style="margin-bottom: 0in; line-height: 100%">[ReceiverCode] =
 4-character identifier</p>
-<p style="margin-bottom: 0in; line-height: 100%">[CountryCode] = ISO
-3166-1 alpha-3 (e.g. &quot;NOR&quot;)</p>
+<p style="margin-bottom: 0in; line-height: 100%">[CountryCode] =
+Country code for receiver site. ISO 3166-1 alpha-3 (e.g. &quot;NOR&quot;)</p>
 <p style="margin-bottom: 0in; line-height: 100%">[yyyy] = year, 4
 digits</p>
 <p style="margin-bottom: 0in; line-height: 100%">[mm] = month, 2
@@ -363,14 +363,18 @@ level in the file:</p>
 			A textual description defining what is used as &quot;signal 1&quot;,
 			&quot;signal 2&quot; and &quot;signal 3&quot; in this file.</p>
 			<p style="margin-bottom: 0in">Not mandatory, but recommended.</p>
-			<p style="margin-bottom: 0in">For example:</p>
-			<p style="margin-left: 0.49in; margin-bottom: 0in"><font size="2" style="font-size: 10pt"><i>&quot;Sig1&quot;
+			<p style="margin-bottom: 0in"><br/>
+
+			</p>
+			<p style="margin-bottom: 0in">Currently we recommend using this
+			definition:</p>
+			<p style="margin-bottom: 0in"><font size="2" style="font-size: 10pt"><i>&quot;Sig1&quot;
 			means L1CA for GPS/GLONASS/SBAS/QZSS, L1BC for GALILEO, B1 for
 			COMPASS.</i></font></p>
-			<p style="margin-left: 0.49in; margin-bottom: 0in"><font size="2" style="font-size: 10pt"><i>&quot;Sig2&quot;
+			<p style="margin-bottom: 0in"><font size="2" style="font-size: 10pt"><i>&quot;Sig2&quot;
 			means L2C for GPS/GLONASS/QZSS, E5a for GALILEO, L5 for SBAS, B2
 			for COMPASS.</i></font></p>
-			<p style="margin-left: 0.49in"><font size="2" style="font-size: 10pt"><i>&quot;Sig3&quot;
+			<p><font size="2" style="font-size: 10pt"><i>&quot;Sig3&quot;
 			means L5 for GPS/QZSS or E5b for GALILEO.</i></font></p>
 		</td>
 		<td width="13%" style="border: none; padding: 0in"><p align="right">
@@ -497,8 +501,8 @@ level in the file:</p>
 		<td width="9%" style="border: none; padding: 0in"><p>String</p>
 		</td>
 		<td width="46%" style="border: none; padding: 0in"><p>Country code
-			for the agency that collected the data, using the standard ISO
-			3166-1 alpha-3</p>
+			for the country in which the receiver is located, using the
+			standard ISO 3166-1 alpha-3</p>
 		</td>
 		<td width="13%" style="border: none; padding: 0in"><p align="right">
 			No</p>
@@ -517,24 +521,6 @@ level in the file:</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p><br/>
-
-			</p>
-		</td>
-		<td width="9%" style="border: none; padding: 0in"><p><br/>
-
-			</p>
-		</td>
-		<td width="46%" style="border: none; padding: 0in"><p><br/>
-
-			</p>
-		</td>
-		<td width="13%" style="border: none; padding: 0in"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr valign="top">
 		<td width="32%" style="border: none; padding: 0in"><p>DOI</p>
 		</td>
 		<td width="9%" style="border: none; padding: 0in"><p>String</p>
@@ -547,24 +533,6 @@ level in the file:</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p><br/>
-
-			</p>
-		</td>
-		<td width="9%" style="border: none; padding: 0in"><p><br/>
-
-			</p>
-		</td>
-		<td width="46%" style="border: none; padding: 0in"><p><br/>
-
-			</p>
-		</td>
-		<td width="13%" style="border: none; padding: 0in"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr valign="top">
 		<td width="32%" style="border: none; padding: 0in"><p>Comment</p>
 		</td>
 		<td width="9%" style="border: none; padding: 0in"><p>String</p>
@@ -574,78 +542,6 @@ level in the file:</p>
 		</td>
 		<td width="13%" style="border: none; padding: 0in"><p align="right">
 			No</p>
-		</td>
-	</tr>
-	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p><br/>
-
-			</p>
-		</td>
-		<td width="9%" style="border: none; padding: 0in"><p><br/>
-
-			</p>
-		</td>
-		<td width="46%" style="border: none; padding: 0in"><p><br/>
-
-			</p>
-		</td>
-		<td width="13%" style="border: none; padding: 0in"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p><br/>
-
-			</p>
-		</td>
-		<td width="9%" style="border: none; padding: 0in"><p><br/>
-
-			</p>
-		</td>
-		<td width="46%" style="border: none; padding: 0in"><p><br/>
-
-			</p>
-		</td>
-		<td width="13%" style="border: none; padding: 0in"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p><br/>
-
-			</p>
-		</td>
-		<td width="9%" style="border: none; padding: 0in"><p><br/>
-
-			</p>
-		</td>
-		<td width="46%" style="border: none; padding: 0in"><p><br/>
-
-			</p>
-		</td>
-		<td width="13%" style="border: none; padding: 0in"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p><br/>
-
-			</p>
-		</td>
-		<td width="9%" style="border: none; padding: 0in"><p><br/>
-
-			</p>
-		</td>
-		<td width="46%" style="border: none; padding: 0in"><p><br/>
-
-			</p>
-		</td>
-		<td width="13%" style="border: none; padding: 0in"><p><br/>
-
-			</p>
 		</td>
 	</tr>
 </table>
@@ -680,610 +576,597 @@ used as the dimension variable they are not mandatory.</p>
 <p style="margin-bottom: 0in; line-height: 100%"><br/>
 
 </p>
-<table width="100%" cellpadding="0" cellspacing="0">
-	<col width="81*"/>
+<table width="665" cellpadding="0" cellspacing="0">
+	<col width="204"/>
 
-	<col width="23*"/>
+	<col width="72"/>
 
-	<col width="118*"/>
+	<col width="300"/>
 
-	<col width="34*"/>
+	<col width="89"/>
 
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p style="background: #dddddd">
+		<td width="204" style="border: none; padding: 0in"><p style="background: #dddddd">
 			<b>Name</b></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p style="background: #dddddd">
+		<td width="72" style="border: none; padding: 0in"><p style="background: #dddddd">
 			<b>Type</b></p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p style="background: #dddddd">
+		<td width="300" style="border: none; padding: 0in"><p style="background: #dddddd">
 			<b>Description</b></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p style="background: #dddddd">
+		<td width="89" style="border: none; padding: 0in"><p style="background: #dddddd">
 			<b>Mandatory?</b></p>
 		</td>
 	</tr>
 	<tr>
-		<td colspan="4" width="100%" valign="top" style="border: none; padding: 0in"><p align="center">
+		<td colspan="4" width="665" valign="top" style="border: none; padding: 0in"><p align="center">
 			<u><b>Time parameters</b></u></p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p>GPSWeek</p>
+		<td width="204" style="border: none; padding: 0in"><p>GPSWeek</p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>integer[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>integer[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p>GPS week</p>
+		<td width="300" style="border: none; padding: 0in"><p>GPS week</p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p>TOW</p>
+		<td width="204" style="border: none; padding: 0in"><p>TOW</p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>integer[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>integer[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p>GPS
+		<td width="300" style="border: none; padding: 0in"><p>GPS
 			second-of-week</p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p>UNIXTime</p>
+		<td width="204" style="border: none; padding: 0in"><p>UNIXTime</p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>integer[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>integer64[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p>Seconds since
+		<td width="300" style="border: none; padding: 0in"><p>Seconds since
 			Jan 01 1970. (UTC)</p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p>Yes</p>
+		<td width="89" style="border: none; padding: 0in"><p>Yes</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p><br/>
+		<td width="204" style="border: none; padding: 0in"><p><br/>
 
 			</p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p><br/>
+		<td width="72" style="border: none; padding: 0in"><p><br/>
 
 			</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p><br/>
+		<td width="300" style="border: none; padding: 0in"><p><br/>
 
 			</p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p><br/>
+		<td width="89" style="border: none; padding: 0in"><p><br/>
 
 			</p>
 		</td>
 	</tr>
 	<tr>
-		<td colspan="4" width="100%" valign="top" style="border: none; padding: 0in"><p align="center">
+		<td colspan="4" width="665" valign="top" style="border: none; padding: 0in"><p align="center">
 			<u><b>Satellite parameters</b></u></p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p>SVID</p>
+		<td width="204" style="border: none; padding: 0in"><p>SVID</p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>integer[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>integer[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p>Satellite
+		<td width="300" style="border: none; padding: 0in"><p>Satellite
 			identifier. See separate section for full description.</p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p>Yes</p>
+		<td width="89" style="border: none; padding: 0in"><p>Yes</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p>Azimuth</p>
+		<td width="204" style="border: none; padding: 0in"><p>Azimuth</p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p>Azimuth of
+		<td width="300" style="border: none; padding: 0in"><p>Azimuth of
 			satellite [degrees]</p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p>Yes</p>
+		<td width="89" style="border: none; padding: 0in"><p>Yes</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p>Elevation</p>
+		<td width="204" style="border: none; padding: 0in"><p>Elevation</p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p>Elevation of
+		<td width="300" style="border: none; padding: 0in"><p>Elevation of
 			satellite [degrees]</p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p>Yes</p>
+		<td width="89" style="border: none; padding: 0in"><p>Yes</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p>Longitude</p>
+		<td width="204" style="border: none; padding: 0in"><p>Longitude</p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p>Longitude of
+		<td width="300" style="border: none; padding: 0in"><p>Longitude of
 			the Ionospheric Pierce Point (IPP), in degrees East</p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p>Latitude</p>
+		<td width="204" style="border: none; padding: 0in"><p>Latitude</p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p>Latitude of
+		<td width="300" style="border: none; padding: 0in"><p>Latitude of
 			the Ionospheric Pierce Point (IPP), in degrees North</p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p><br/>
+		<td width="204" style="border: none; padding: 0in"><p><br/>
 
 			</p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p><br/>
+		<td width="72" style="border: none; padding: 0in"><p><br/>
 
 			</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p><br/>
+		<td width="300" style="border: none; padding: 0in"><p><br/>
 
 			</p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p><br/>
+		<td width="89" style="border: none; padding: 0in"><p><br/>
 
 			</p>
 		</td>
 	</tr>
 	<tr>
-		<td colspan="4" width="100%" valign="top" style="border: none; padding: 0in"><p align="center">
+		<td colspan="4" width="665" valign="top" style="border: none; padding: 0in"><p align="center">
 			<u><b>Septentrio-specific parameters</b></u></p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Sept_Rxstate</font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Sept_Rxstate</font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p><span style="background: transparent">integer[]</span></p>
+		<td width="72" style="border: none; padding: 0in"><p><span style="background: transparent">integer[]</span></p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Value
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Value
 			of the RxState field of the ReceiverStatus SBF block</font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Sept_</font><font face="Liberation Serif">sbf2ismr</font><font face="Liberation Serif">ver</font><font face="Liberation Serif">sion</font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Sept_</font><font face="Liberation Serif">sbf2ismr</font><font face="Liberation Serif">ver</font><font face="Liberation Serif">sion</font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p><span style="background: transparent">integer[]</span></p>
+		<td width="72" style="border: none; padding: 0in"><p><span style="background: transparent">integer[]</span></p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">sbf2ismr</font><font face="Liberation Serif">
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">sbf2ismr</font><font face="Liberation Serif">
 			version number</font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><br/>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><br/>
 
 			</p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p><br/>
+		<td width="72" style="border: none; padding: 0in"><p><br/>
 
 			</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><br/>
+		<td width="300" style="border: none; padding: 0in"><p align="left"><br/>
 
 			</p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p><br/>
+		<td width="89" style="border: none; padding: 0in"><p><br/>
 
 			</p>
 		</td>
 	</tr>
 	<tr>
-		<td colspan="4" width="100%" valign="top" style="border: none; padding: 0in"><p align="center">
+		<td colspan="4" width="665" valign="top" style="border: none; padding: 0in"><p align="center">
 			<font face="Liberation Serif"><u><b>Data, per signal (<span style="background: #00ccff">#</span>
 			= 1, 2 or 3)</b></u></font></p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">AvgCN0s<span style="background: #00ccff">#</span></font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">AvgCN0s<span style="background: #00ccff">#</span></font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Average
-			signal 1 C/N0 over the last minute [dB-Hz]</font></p>
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Average
+			signal <span style="background: #00ccff">#</span> C/N0 over the
+			last minute [dB-Hz]</font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
-		</td>
-	</tr>
-	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">S4s<span style="background: #00ccff">#</span></font></p>
-		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
-		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Total
-			S4 on signal <span style="background: #00ccff">#</span></font></p>
-		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">S4cors<span style="background: #00ccff">#</span></font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">S4s<span style="background: #00ccff">#</span></font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Correction
-			to total S4 on signal <span style="background: #00ccff">#</span></font></p>
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Corrected</font><font face="Liberation Serif">
+			S4 on signal </font><font face="Liberation Serif"><span style="background: #00ccff">#</span></font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Phi01s<span style="background: #00ccff">#</span></font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">S4uncors<span style="background: #00ccff">#</span></font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">1-second
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Uncorrected</font><font face="Liberation Serif">
+			S4 on signal </font><font face="Liberation Serif"><span style="background: #00ccff">#</span></font></p>
+		</td>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">S4cors<span style="background: #00ccff">#</span></font></p>
+		</td>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
+		</td>
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Correction
+			to S4 on signal <span style="background: #00ccff">#</span></font></p>
+		</td>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Phi01s<span style="background: #00ccff">#</span></font></p>
+		</td>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
+		</td>
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">1-second
 			phase sigma on signal <span style="background: #00ccff">#</span>
 			[radians]</font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Phi03s<span style="background: #00ccff">#</span></font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Phi03s<span style="background: #00ccff">#</span></font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">3-second
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">3-second
 			phase sigma on signal <span style="background: #00ccff">#</span>
 			[radians]</font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Phi10s<span style="background: #00ccff">#</span></font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Phi10s<span style="background: #00ccff">#</span></font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">10-second
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">10-second
 			phase sigma on signal <span style="background: #00ccff">#</span>
 			[radians]</font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Phi30s<span style="background: #00ccff">#</span></font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Phi30s<span style="background: #00ccff">#</span></font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">30-second
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">30-second
 			phase sigma on signal <span style="background: #00ccff">#</span>
 			[radians]</font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Phi60s<span style="background: #00ccff">#</span></font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Phi60s<span style="background: #00ccff">#</span></font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">60-second
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">60-second
 			phase sigma on signal <span style="background: #00ccff">#</span>
 			[radians]</font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">AvgCCDs<span style="background: #00ccff">#</span></font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">AvgCCDs<span style="background: #00ccff">#</span></font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Average
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Average
 			code-carrier divergence for signal <span style="background: #00ccff">#</span>
 			[meters]</font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">SigmaCCDs<span style="background: #00ccff">#</span></font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">SigmaCCDs<span style="background: #00ccff">#</span></font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Standard
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Standard
 			deviation of code-carrier divergence for signal <span style="background: #00ccff">#</span>
 			[meters]</font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">lockts<span style="background: #00ccff">#</span></font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">lockts<span style="background: #00ccff">#</span></font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p><span style="background: transparent">integer[]</span></p>
+		<td width="72" style="border: none; padding: 0in"><p><span style="background: transparent">integer[]</span></p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Signal
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Signal
 			lock time for signal <span style="background: #00ccff">#</span>
 			[seconds]</font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">SIs<span style="background: #00ccff">#</span></font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">SIs<span style="background: #00ccff">#</span></font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p><span style="background: transparent">float[]</span></p>
+		<td width="72" style="border: none; padding: 0in"><p><span style="background: transparent">float[]</span></p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">SI
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">SI
 			index on signal <span style="background: #00ccff">#</span></font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">SInums<span style="background: #00ccff">#</span></font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">SInums<span style="background: #00ccff">#</span></font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Numerator
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Numerator
 			of SI index on signal <span style="background: #00ccff">#</span></font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">ps<span style="background: #00ccff">#</span></font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">ps<span style="background: #00ccff">#</span></font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Spectral
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Spectral
 			slope for detrended phase in the 0.1 to 25 Hz range for signal <span style="background: #00ccff">#</span></font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Ts<span style="background: #00ccff">#</span></font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Ts<span style="background: #00ccff">#</span></font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Phase
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Phase
 			power spectral density at 1 Hz on signal <span style="background: #00ccff">#</span>
 			[rad^2/Hz]</font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">plows<span style="background: #00ccff">#</span></font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">plows<span style="background: #00ccff">#</span></font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Spectral
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Spectral
 			slope for detrended phase in the 0.1 to 8 Hz range for signal <span style="background: #00ccff">#</span></font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">pmids<span style="background: #00ccff">#</span></font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">pmids<span style="background: #00ccff">#</span></font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Spectral
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Spectral
 			slope for detrended phase in the 8 to 16 Hz range for signal <span style="background: #00ccff">#</span></font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">phighs<span style="background: #00ccff">#</span></font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">phighs<span style="background: #00ccff">#</span></font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Spectral
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Spectral
 			slope for detrended phase in the 16 to 25 Hz range for signal <span style="background: #00ccff">#</span></font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><br/>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><br/>
 
 			</p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p><br/>
+		<td width="72" style="border: none; padding: 0in"><p><br/>
 
 			</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><br/>
+		<td width="300" style="border: none; padding: 0in"><p align="left"><br/>
 
 			</p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p><br/>
+		<td width="89" style="border: none; padding: 0in"><p><br/>
 
 			</p>
 		</td>
 	</tr>
 	<tr>
-		<td colspan="4" width="100%" valign="top" style="border: none; padding: 0in"><p align="center">
+		<td colspan="4" width="665" valign="top" style="border: none; padding: 0in"><p align="center">
 			<font face="Liberation Serif"><u><b>Data, from signal combinations</b></u></font></p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">TEC45</font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">TEC45</font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">TEC
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">TEC
 			at TOW-45 sec, with calibration [TECU]</font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">dTEC6045</font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">dTEC6045</font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">dTEC
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">dTEC
 			from TOW-60 to TOW-45 [TECU]</font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">TEC30</font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">TEC30</font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">TEC
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">TEC
 			at TOW-30 sec, with calibration [TECU]</font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">dTEC4530</font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">dTEC4530</font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">dTEC
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">dTEC
 			from TOW-45 to TOW-30 [TECU]</font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">TEC15</font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">TEC15</font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">TEC
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">TEC
 			at TOW-15 sec, with calibration [TECU]</font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">dTEC3015</font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">dTEC3015</font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">dTEC
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">dTEC
 			from TOW-30 to TOW-15 [TECU]</font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">TECtow</font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">TECtow</font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">TEC
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">TEC
 			at TOW, with calibration [TECU]</font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">dTEC15tow</font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">TECtow_uncal</font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">dTEC
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">TEC
+			at TOW, without calibration [TECU]</font></p>
+		</td>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">dTEC15tow</font></p>
+		</td>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
+		</td>
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">dTEC
 			from TOW-15 to TOW [TECU]</font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">locktTEC</font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">locktTEC</font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p><span style="background: transparent">integer[]</span></p>
+		<td width="72" style="border: none; padding: 0in"><p><span style="background: transparent">integer[]</span></p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Lock
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Lock
 			time on second frequency used for TEC computation [seconds]</font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">CN0TEC</font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">CN0TEC</font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Average
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Average
 			C/N0 of second frequency used for TEC computation [dB-Hz]</font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">ROTIFullHz</font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">ROTIFullHz</font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Rate-of-TEC
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Rate-of-TEC
 			index, based on full time resolution signal 1 and signal 2.</font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="32%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">ROTI1Hz</font></p>
+		<td width="204" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">ROTI1Hz</font></p>
 		</td>
-		<td width="9%" style="border: none; padding: 0in"><p>float[]</p>
+		<td width="72" style="border: none; padding: 0in"><p>float[]</p>
 		</td>
-		<td width="46%" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Rate-of-TEC
+		<td width="300" style="border: none; padding: 0in"><p align="left"><font face="Liberation Serif">Rate-of-TEC
 			index, based on signal 1 and signal 2 decimated to 1 Hz
 			resolution.</font></p>
 		</td>
-		<td width="13%" style="border: none; padding: 0in"><p align="right">
-			No</p>
+		<td width="89" style="border: none; padding: 0in"><p align="right">No</p>
 		</td>
 	</tr>
 </table>
@@ -1349,15 +1232,12 @@ associated with each dataset:</p>
 		</td>
 	</tr>
 </table>
-<h1 class="western">File Structure:</h1>
+<p style="margin-bottom: 0in; line-height: 100%"><br/>
+
+</p>
+<h1 class="western" style="page-break-before: always">File Structure:</h1>
 <p style="margin-bottom: 0in; line-height: 100%"><img src="FormatDescription_wip_html_885ef868b257d4b.png" name="Image1" align="left" width="628" height="752" border="0"/>
 <br/>
-
-</p>
-<p style="margin-bottom: 0in; line-height: 100%"><br/>
-
-</p>
-<p style="margin-bottom: 0in; line-height: 100%"><br/>
 
 </p>
 <p style="margin-bottom: 0in; line-height: 100%"><br/>
@@ -1527,10 +1407,52 @@ associated with each dataset:</p>
 <p style="margin-bottom: 0in; line-height: 100%"><br/>
 
 </p>
+<p style="margin-bottom: 0in; line-height: 100%"><br/>
+
+</p>
+<h1 class="western">Phixx indices</h1>
+<p style="margin-bottom: 0in; line-height: 100%">Phi01 is the average
+of the 60 standard deviations computed over 1-s intervals during the
+last minute.</p>
+<p style="margin-bottom: 0in; line-height: 100%">Phi03 is the average
+of the 20 standard deviations computed over 3-s intervals during the
+last minute.</p>
+<p style="margin-bottom: 0in; line-height: 100%">Phi10 is the average
+of the 6 standard deviations computed over 10-s intervals during the
+last minute.</p>
+<p style="margin-bottom: 0in; line-height: 100%">Phi30 is the average
+of the 2 standard deviations computed over 30-s intervals during the
+last minute.</p>
+<p style="margin-bottom: 0in; line-height: 100%">Phi60 is the
+standard deviation computed over the whole last minute.</p>
+<p style="margin-bottom: 0in; line-height: 100%"><br/>
+
+</p>
+<h1 class="western">S4 correction</h1>
+<p style="margin-bottom: 0in; line-height: 100%"><span style="background: transparent">The
+S4 correction accounts for the thermal noise contribution </span><span style="background: transparent">to
+the</span><span style="background: transparent"> S4.</span><span style="background: transparent">
+</span><span style="background: transparent">The corrected S4 index
+(</span><span style="background: transparent">S4s</span><span style="background: transparent">#)
+is related to the uncorrected S4</span><span style="background: transparent">
+</span><span style="background: transparent">(</span><span style="background: transparent">S4uncors#</span><span style="background: transparent">)
+and its correction (</span><span style="background: transparent">S4cors#</span><span style="background: transparent">)</span><span style="background: transparent">
+</span><span style="background: transparent">in this way:</span></p>
+<p style="margin-bottom: 0in; line-height: 100%"><span style="background: transparent"><img src="FormatDescription_wip_html_478f912050d26132.gif" name="Object1" hspace="8" width="244" height="24"/>
+</span></p>
+<p style="margin-bottom: 0in; line-height: 100%"><span style="background: transparent">If
+the S4 correction is greater than its uncorrected value, the
+corrected S4 value is set to zero.</span></p>
+<p style="margin-bottom: 0in; line-height: 100%"><br/>
+
+</p>
 <h1 class="western">Note on compression</h1>
 <p>If compression is desired, it is recommended to use the internal
 compression routines of the HDF5/NetCDF4 format. See e.g.:</p>
 <p><a href="https://www.hdfgroup.org/2015/04/hdf5-data-compression-demystified-1/">https://www.hdfgroup.org/2015/04/hdf5-data-compression-demystified-1/</a></p>
 <p><a href="https://www.hdfgroup.org/2017/05/hdf5-data-compression-demystified-2-performance-tuning/">https://www.hdfgroup.org/2017/05/hdf5-data-compression-demystified-2-performance-tuning/</a></p>
+<div title="footer"><p align="center" style="margin-top: 0.2in; margin-bottom: 0in; line-height: 100%">
+	<span style="background: #c0c0c0"><sdfield type=PAGE subtype=RANDOM format=PAGE>9</sdfield></span></p>
+</div>
 </body>
 </html>
