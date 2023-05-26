@@ -30,8 +30,11 @@ dateStr = datetime.strftime(datetime.utcfromtimestamp(min(f['UNIXTime'])), "%Y-%
 dt_utcdatetimes = [datetime.utcfromtimestamp(x) for x in f['UNIXTime'][()]]
 
 # Construct boolean arrays for sorting/filtering
-isGPS = (f['SVID'][()] > 0) & (f['SVID'][()] < 33)
-
+isGPS     = (f['SVID'][()] >   0) & (f['SVID'][()] <  33)
+isGLONASS = (f['SVID'][()] >  37) & (f['SVID'][()] <  63)
+isGalileo = (f['SVID'][()] >  70) & (f['SVID'][()] < 107)
+isSBAS    = ((f['SVID'][()] > 119) & (f['SVID'][()] < 141)) | ((f['SVID'][()] > 197) & (f['SVID'][()] < 216))
+isBeiDou  = ((f['SVID'][()] > 140) & (f['SVID'][()] < 181)) | ((f['SVID'][()] > 222) & (f['SVID'][()] < 246))
 
 
 
@@ -40,11 +43,12 @@ isGPS = (f['SVID'][()] > 0) & (f['SVID'][()] < 33)
 fig, axs = plt.subplots(2)
 plotWasMade = False
 if 'Phi60s1' in f.keys():
+	hasValue = f['Phi60s1'][()] > 0
 	if 'Unit' in f['Phi60s1'].attrs.keys():
 		unitStr = f['Phi60s1'].attrs['Unit']
 	else:
 		unitStr = '?'
-	axs[0].plot(list(compress(mdates.date2num(dt_utcdatetimes), isGPS)), list(compress(f['Phi60s1'][()], isGPS)), '.')
+	axs[0].plot(list(compress(mdates.date2num(dt_utcdatetimes), isGPS & hasValue)), list(compress(f['Phi60s1'][()], isGPS & hasValue)), '.')
 	axs[0].xaxis.set_major_formatter(mdates.DateFormatter('%H'))
 	axs[0].xaxis.set_major_locator(mdates.HourLocator())
 	axs[0].set_xlim([min(mdates.date2num(dt_utcdatetimes)), max(mdates.date2num(dt_utcdatetimes))])
@@ -55,11 +59,12 @@ if 'Phi60s1' in f.keys():
 	plotWasMade = True
 
 if 'Phi60s2' in f.keys():
+	hasValue = f['Phi60s2'][()] > 0
 	if 'Unit' in f['Phi60s2'].attrs.keys():
 		unitStr = f['Phi60s2'].attrs['Unit']
 	else:
 		unitStr = '?'
-	axs[1].plot(list(compress(mdates.date2num(dt_utcdatetimes), isGPS)), list(compress(f['Phi60s2'][()], isGPS)), '.')
+	axs[1].plot(list(compress(mdates.date2num(dt_utcdatetimes), isGPS & hasValue)), list(compress(f['Phi60s2'][()], isGPS & hasValue)), '.')
 	axs[1].xaxis.set_major_formatter(mdates.DateFormatter('%H'))
 	axs[1].xaxis.set_major_locator(mdates.HourLocator())
 	axs[1].set_xlim([min(mdates.date2num(dt_utcdatetimes)), max(mdates.date2num(dt_utcdatetimes))])
@@ -70,7 +75,7 @@ if 'Phi60s2' in f.keys():
 	plotWasMade = True
 
 if plotWasMade:
-	plt.savefig(datapath + '/' + fnamestem + '_PhaseScint' + '.png', dpi=300)
+	plt.savefig(datapath + '/' + fnamestem + '_PhaseScint' + '_GPS' + '.png', dpi=300)
 
 
 
@@ -79,7 +84,7 @@ if plotWasMade:
 
 hours = range(0, 24)
 fig, axs = plt.subplots(2)
-
+plotWasMade = False
 if 'Phi60s1' in f.keys():
 	hasValue = f['Phi60s1'][()] > 0
 	dHourlyPhi60s1 = []
@@ -95,7 +100,7 @@ if 'Phi60s1' in f.keys():
 	axs[0].set_ylabel(r'Sig1 $\sigma_\phi$ (' + unitStr + ')')
 	axs[0].set_title('Phase Scintillation, ' + recCode + ', GPS, ' + dateStr)
 	axs[0].grid()
-
+	plotWasMade = True
 
 if 'Phi60s2' in f.keys():
 	hasValue = f['Phi60s2'][()] > 0
@@ -112,15 +117,36 @@ if 'Phi60s2' in f.keys():
 	axs[1].set_ylabel(r'Sig2 $\sigma_\phi$ (' + unitStr + ')')
 	axs[1].set_xlabel('UTC hour-of-day')
 	axs[1].grid()
+	plotWasMade = True
 
-
-plt.savefig(datapath + '/' + fnamestem + '_PhaseScintBoxPlot' + '.png', dpi=300)
+if plotWasMade:
+	plt.savefig(datapath + '/' + fnamestem + '_PhaseScintBoxPlot' + '_GPS' + '.png', dpi=300)
 
 
 
 # Make plot - Skyplot (TODO)
-#'Azimuth', 'Elevation'
 
+if 'Phi60s1' in f.keys():
+	hasValue = f['Phi60s1'][()] > 0
+
+	theta = list(compress(f['Azimuth'][()] * np.pi / 180, isGPS & hasValue))
+	r = list(compress(90 - f['Elevation'][()], isGPS & hasValue))
+	colors = list(compress(f['Phi60s1'][()], isGPS & hasValue))
+	area = list(compress(1 + f['Phi60s1'][()] * 30, isGPS & hasValue))
+
+	fig = plt.figure()
+	ax = fig.add_subplot(projection='polar')
+	ax.set_theta_zero_location("N")
+	im = ax.scatter(theta, r, c=colors, s=area, cmap=plt.cm.jet, alpha=0.75)
+	im.set_clim([0, 1])
+	ax.set_rlim([0, 90])
+	ax.set_yticks(range(0, 91, 30))
+	ax.set_yticklabels(['90$^{\circ}$', '60$^{\circ}$', '30$^{\circ}$', '0$^{\circ}$'])
+	ax.set_title('Phase Scintillation, ' + recCode + ', GPS, ' + dateStr)
+	cb = fig.colorbar(im, ax=ax)
+	cb.set_label(r'Sig1 $\sigma_\phi$ (' + unitStr + ')')
+
+	plt.savefig(datapath + '/' + fnamestem + '_' + 'Phi60s1' + '_' + 'SkyPlot' + '_GPS' + '.png', dpi=300)
 
 
 # Make plot - Dots on map (TODO)
