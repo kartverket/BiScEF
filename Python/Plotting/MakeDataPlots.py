@@ -9,18 +9,79 @@ from itertools import compress
 
 # NB: This script assumes that the file contains data from one day (or less)
 
-# Input from command line: one filename
-fname = str(sys.argv[1])
-datapath = os.path.dirname(fname)
-basename = os.path.basename(fname)
+def plot_timeseries_simple(constFilter, constStr):
+	fig, axs = plt.subplots(2)
+	plotWasMade = False
+
+	if 'Phi60s1' in f.keys():
+		hasValue = f['Phi60s1'][()] > 0
+		if 'Unit' in f['Phi60s1'].attrs.keys():
+			unitStr = f['Phi60s1'].attrs['Unit']
+		else:
+			unitStr = '?'
+		axs[0].plot(list(compress(mdates.date2num(dt_utcdatetimes), constFilter & hasValue)), list(compress(f['Phi60s1'][()], constFilter & hasValue)), '.')
+		axs[0].xaxis.set_major_formatter(mdates.DateFormatter('%H'))
+		axs[0].xaxis.set_major_locator(mdates.HourLocator())
+		axs[0].set_xlim([min(mdates.date2num(dt_utcdatetimes)), max(mdates.date2num(dt_utcdatetimes))])
+		axs[0].set_ylim([0, 1])
+		axs[0].set_ylabel(r'Sig1 $\sigma_\phi$ (' + unitStr + ')')
+		axs[0].set_title('Phase Scintillation, ' + recCode + ', ' + constStr + ', ' + dateStr)
+		axs[0].grid()
+		plotWasMade = True
+
+	if 'Phi60s2' in f.keys():
+		hasValue = f['Phi60s2'][()] > 0
+		if 'Unit' in f['Phi60s2'].attrs.keys():
+			unitStr = f['Phi60s2'].attrs['Unit']
+		else:
+			unitStr = '?'
+		axs[1].plot(list(compress(mdates.date2num(dt_utcdatetimes), constFilter & hasValue)), list(compress(f['Phi60s2'][()], constFilter & hasValue)), '.')
+		axs[1].xaxis.set_major_formatter(mdates.DateFormatter('%H'))
+		axs[1].xaxis.set_major_locator(mdates.HourLocator())
+		axs[1].set_xlim([min(mdates.date2num(dt_utcdatetimes)), max(mdates.date2num(dt_utcdatetimes))])
+		axs[1].set_ylim([0, 1])
+		axs[1].set_xlabel('UTC hour-of-day')
+		axs[1].set_ylabel(r'Sig2 $\sigma_\phi$ (' + unitStr + ')')
+		axs[1].grid()
+		plotWasMade = True
+
+	if plotWasMade:
+		plotfname = datapath + '/' + fnamestem + '_PhaseScint' + '_' + constStr + '.png'
+		plt.savefig(plotfname, dpi=300)
+		print("Saved plot to " + plotfname)
+
+
+
+
+
+# Input from command line:
+import argparse
+parser = argparse.ArgumentParser(description="BiScEF data plotter",
+                                 formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+                                 epilog="NB: This script assumes that the file contains data from one day (or less)")
+parser.add_argument("--GPS", action="store_true", help="Make plots for GPS")
+parser.add_argument("--GLONASS", action="store_true", help="Make plots for GLONASS")
+parser.add_argument("--Galileo", action="store_true", help="Make plots for Galileo")
+parser.add_argument("--BeiDou", action="store_true", help="Make plots for BeiDou")
+parser.add_argument("--SBAS", action="store_true", help="Make plots for SBAS")
+parser.add_argument("--plot_ts_simple", action="store_true", help="Plot scintillation indices as simple time series")
+parser.add_argument("--plot_ts_box", action="store_true", help="Plot scintillation indices as box-and-whiskers time series")
+parser.add_argument("filename", help="Filename of input data file")
+args = parser.parse_args()
+config = vars(args)
+# FOR DEBUGGING: print(config)
+# FOR DEBUGGING: sys.exit("testing")
+
+# Derived from command line input
+datapath = os.path.dirname(config['filename'])
+basename = os.path.basename(config['filename'])
 fnamestem = os.path.splitext(basename)[0]
 
 # Open file
-print("Now reading " + fname)
-f = h5py.File(fname, 'r')
+print("Now reading " + config['filename'])
+f = h5py.File(config['filename'], 'r')
 if not f:
-	sys.exit("Failed to open \"" + fname + "\"")
-
+	sys.exit("Failed to open \"" + config['filename'] + "\"")
 
 # Get info
 recCode = f.attrs['ReceiverCode']
@@ -36,47 +97,18 @@ isGalileo = (f['SVID'][()] >  70) & (f['SVID'][()] < 107)
 isSBAS    = ((f['SVID'][()] > 119) & (f['SVID'][()] < 141)) | ((f['SVID'][()] > 197) & (f['SVID'][()] < 216))
 isBeiDou  = ((f['SVID'][()] > 140) & (f['SVID'][()] < 181)) | ((f['SVID'][()] > 222) & (f['SVID'][()] < 246))
 
-
-
 # Make plot - Simple scatter plot time series
-
-fig, axs = plt.subplots(2)
-plotWasMade = False
-if 'Phi60s1' in f.keys():
-	hasValue = f['Phi60s1'][()] > 0
-	if 'Unit' in f['Phi60s1'].attrs.keys():
-		unitStr = f['Phi60s1'].attrs['Unit']
-	else:
-		unitStr = '?'
-	axs[0].plot(list(compress(mdates.date2num(dt_utcdatetimes), isGPS & hasValue)), list(compress(f['Phi60s1'][()], isGPS & hasValue)), '.')
-	axs[0].xaxis.set_major_formatter(mdates.DateFormatter('%H'))
-	axs[0].xaxis.set_major_locator(mdates.HourLocator())
-	axs[0].set_xlim([min(mdates.date2num(dt_utcdatetimes)), max(mdates.date2num(dt_utcdatetimes))])
-	axs[0].set_ylim([0, 1])
-	axs[0].set_ylabel(r'Sig1 $\sigma_\phi$ (' + unitStr + ')')
-	axs[0].set_title('Phase Scintillation, ' + recCode + ', GPS, ' + dateStr)
-	axs[0].grid()
-	plotWasMade = True
-
-if 'Phi60s2' in f.keys():
-	hasValue = f['Phi60s2'][()] > 0
-	if 'Unit' in f['Phi60s2'].attrs.keys():
-		unitStr = f['Phi60s2'].attrs['Unit']
-	else:
-		unitStr = '?'
-	axs[1].plot(list(compress(mdates.date2num(dt_utcdatetimes), isGPS & hasValue)), list(compress(f['Phi60s2'][()], isGPS & hasValue)), '.')
-	axs[1].xaxis.set_major_formatter(mdates.DateFormatter('%H'))
-	axs[1].xaxis.set_major_locator(mdates.HourLocator())
-	axs[1].set_xlim([min(mdates.date2num(dt_utcdatetimes)), max(mdates.date2num(dt_utcdatetimes))])
-	axs[1].set_ylim([0, 1])
-	axs[1].set_xlabel('UTC hour-of-day')
-	axs[1].set_ylabel(r'Sig2 $\sigma_\phi$ (' + unitStr + ')')
-	axs[1].grid()
-	plotWasMade = True
-
-if plotWasMade:
-	plt.savefig(datapath + '/' + fnamestem + '_PhaseScint' + '_GPS' + '.png', dpi=300)
-
+if(config['plot_ts_simple']):
+	if(config['GPS']):
+		plot_timeseries_simple(isGPS, "GPS")
+	if(config['GLONASS']):
+		plot_timeseries_simple(isGLONASS, "GLONASS")
+	if(config['Galileo']):
+		plot_timeseries_simple(isGalileo, "Galileo")
+	if(config['BeiDou']):
+		plot_timeseries_simple(isBeiDou, "BeiDou")
+	if(config['SBAS']):
+		plot_timeseries_simple(isSBAS, "SBAS")
 
 
 
