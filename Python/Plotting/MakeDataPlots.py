@@ -1,8 +1,10 @@
 import os
 import sys
 import h5py    
-import numpy as np   
+import numpy as np 
+import pandas as pd  
 import matplotlib.pyplot as plt
+from matplotlib import colors
 import matplotlib.dates as mdates
 from datetime import datetime
 from itertools import compress
@@ -133,8 +135,78 @@ def plot_sky_sigPhi(constFilter, constStr, sigNum):
 		plt.savefig(plotfname, dpi=300)
 		print("Saved plot to " + plotfname)
 
-
-
+def plot_PhiMean2dHist(constFilter, constStr):
+    fig, axs = plt.subplots(2)
+    plotWasMade = False
+    
+    if 'Phi60s1' in f.keys():
+        hasValue = f['Phi60s1'][()] > 0
+        if sum(constFilter & hasValue) > 0:
+            if 'Unit' in f['Phi60s1'].attrs.keys():
+                unitStr = f['Phi60s1'].attrs['Unit']
+            else:
+                unitStr = '?'
+            
+            UNIX = list(compress(f['UNIXTime'][()], constFilter & hasValue))
+            uniqTime = np.unique(UNIX)
+            df = pd.DataFrame()
+            df['Phi'] = list(compress(f['Phi60s1'][()], constFilter & hasValue))
+            df['unixtime'] = list(compress(f['UNIXTime'][()], constFilter & hasValue))
+            Phi60s1Mean = []
+            for t in uniqTime:
+                Phitemp = df.loc[df.unixtime == t]
+                Phi60s1Mean.append(Phitemp.Phi.mean())
+                
+            Phibins = np.linspace(0, 1, 50)
+            timebins = np.linspace(df.time.values[0], df.time.values[-1], 288)
+            
+            axs[0].plot(np.unique(list((compress(mdates.date2num(dt_utcdatetimes), constFilter & hasValue)))), Phi60s1Mean, 'k',linewidth=0.5)
+            axs[0].hist2d(df.unixtime.astype(float),df.Phi.astype(float),bins=[timebins,Phibins],norm = colors.LogNorm())
+            axs[0].xaxis.set_major_formatter(mdates.DateFormatter('%H'))
+            axs[0].xaxis.set_major_locator(mdates.HourLocator())
+            axs[0].set_xlim([min(mdates.date2num(dt_utcdatetimes)), max(mdates.date2num(dt_utcdatetimes))])
+            axs[0].set_ylim([0, 1])
+            axs[0].set_ylabel(r'Sig1 $\sigma_\phi$ (' + unitStr + ')')
+            axs[0].set_title('Mean of Phase Scintillation, ' + recCode + ', ' + constStr + ', ' + dateStr)
+            axs[0].grid()
+            plotWasMade = True
+            
+    if 'Phi60s2' in f.keys():
+        hasValue = f['Phi60s2'][()] > 0
+        if sum(constFilter & hasValue) > 0:
+            if 'Unit' in f['Phi60s2'].attrs.keys():
+                unitStr = f['Phi60s2'].attrs['Unit']
+            else:
+                unitStr = '?'
+            
+            UNIX = list(compress(f['UNIXTime'][()], constFilter & hasValue))
+            uniqTime = np.unique(UNIX)
+            df = pd.DataFrame()
+            df['Phi'] = list(compress(f['Phi60s2'][()], constFilter & hasValue))
+            df['unixtime'] = list(compress(f['UNIXTime'][()], constFilter & hasValue))
+            Phi60s2Mean = []
+            for t in uniqTime:
+                Phitemp = df.loc[df.unixtime == t]
+                Phi60s2Mean.append(Phitemp.Phi.mean())
+            
+            Phibins = np.linspace(0, 1, 50)
+            timebins = np.linspace(df.time.values[0], df.time.values[-1], 288)
+            
+            axs[1].plot(np.unique(list((compress(mdates.date2num(dt_utcdatetimes), constFilter & hasValue)))), Phi60s2Mean, 'k',linewidth=0.5)
+            axs[1].hist2d(df.unixtime.astype(float),df.Phi.astype(float),bins=[timebins,Phibins],norm = colors.LogNorm())
+            axs[1].xaxis.set_major_formatter(mdates.DateFormatter('%H'))
+            axs[1].xaxis.set_major_locator(mdates.HourLocator())
+            axs[1].set_xlim([min(mdates.date2num(dt_utcdatetimes)), max(mdates.date2num(dt_utcdatetimes))])
+            axs[1].set_ylim([0, 1])
+            axs[1].set_ylabel(r'Sig1 $\sigma_\phi$ (' + unitStr + ')')
+            axs[1].set_title('Mean of Phase Scintillation, ' + recCode + ', ' + constStr + ', ' + dateStr)
+            axs[1].grid()
+            plotWasMade = True
+            
+    if plotWasMade:
+        plotfname = datapath + '/' + fnamestem + '_PhaseScintBoxPlot' + '_' + constStr + '.png'
+        plt.savefig(plotfname, dpi=300)
+        print("Saved plot to " + plotfname)
 # Input from command line:
 import argparse
 parser = argparse.ArgumentParser(description="BiScEF data plotter",
@@ -148,6 +220,7 @@ parser.add_argument("--SBAS", action="store_true", help="Make plots for SBAS")
 parser.add_argument("--plot_ts_simple", action="store_true", help="Plot simple time series of scintillation indices as simple time series")
 parser.add_argument("--plot_ts_box", action="store_true", help="Plot box-and-whiskers time series of scintillation indices")
 parser.add_argument("--plot_sky_sigPhi", action="store_true", help="Plot skyplots of phase scintillation indices")
+parser.add_argument("--plot_PhiMean2dHist", action="store_true", help="Plot 2d histogram of sigma phi over time with mean sigma phi")
 parser.add_argument("filename", help="Filename of input data file")
 args = parser.parse_args()
 config = vars(args)
@@ -222,6 +295,20 @@ if(config['plot_sky_sigPhi']):
 	if(config['SBAS']):
 		plot_sky_sigPhi(isSBAS, "SBAS", 1)
 
+
+# Make plot - PhiMean2dHist
+
+if(config['plot_PhiMean2dHist']):
+	if(config['GPS']):
+		plot_PhiMean2dHist(isGPS, "GPS", 1)
+	if(config['GLONASS']):
+		plot_PhiMean2dHist(isGLONASS, "GLONASS", 1)
+	if(config['Galileo']):
+		plot_PhiMean2dHist(isGalileo, "Galileo", 1)
+	if(config['BeiDou']):
+		plot_PhiMean2dHist(isBeiDou, "BeiDou", 1)
+	if(config['SBAS']):
+		plot_PhiMean2dHist(isSBAS, "SBAS", 1)
 
 # Make plot - Dots on map (TODO)
 # 'Longitude', 'Latitude'
