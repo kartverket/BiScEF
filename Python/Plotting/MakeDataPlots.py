@@ -344,7 +344,7 @@ if(config['plot_ts_box']):
 		plot_timeseries_box(constFilter[const], const, ['ROTI1Hz'])
 
 # Make plot - Skyplot
-if(config['plot_sky_sigPhi']):
+if(config['plot_sky']):
 	for const in constToPlot:
 		plot_sky(constFilter[const], const, 'Phi60s1')
 		plot_sky(constFilter[const], const, 'S4s1')
