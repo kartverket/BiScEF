@@ -192,7 +192,7 @@ def plot_heat_sigPhi(constFilter, constStr):
 				unitStr = '?'
 			
 			UNIX = list(compress(f['UNIXTime'][()], totalFilter))
-			uniqTime = np.unique(UNIX)
+			uniqTime = np.unique(sorted(UNIX))
 			utcTime = list((compress(mdates.date2num(dt_utcdatetimes), totalFilter)))
 			df = pd.DataFrame()
 			df['Phi'] = list(compress(f['Phi60s1'][()], totalFilter))
@@ -203,9 +203,9 @@ def plot_heat_sigPhi(constFilter, constStr):
 				Phi60s1Mean.append(Phitemp.Phi.mean())
 				
 			Phibins = np.linspace(0, 1, 50)
-			timebins = np.linspace(utcTime[0], utcTime[-1], 288)
-			
-			axs[0].plot(np.unique(list((compress(mdates.date2num(dt_utcdatetimes), totalFilter)))), Phi60s1Mean, 'r', linewidth=0.5)
+			timebins = np.linspace(sorted(utcTime)[0], sorted(utcTime)[-1], 288)
+
+			axs[0].plot(np.unique(sorted(utcTime)), Phi60s1Mean, 'r', linewidth=0.5)
 			axs[0].hist2d(utcTime, df.Phi.astype(float), bins=[timebins,Phibins], norm = colors.LogNorm())
 			axs[0].xaxis.set_major_formatter(mdates.DateFormatter('%H'))
 			axs[0].xaxis.set_major_locator(mdates.HourLocator())
@@ -226,7 +226,7 @@ def plot_heat_sigPhi(constFilter, constStr):
 				unitStr = '?'
 			
 			UNIX = list(compress(f['UNIXTime'][()], totalFilter))
-			uniqTime = np.unique(UNIX)
+			uniqTime = np.unique(sorted(UNIX))
 			utcTime = list((compress(mdates.date2num(dt_utcdatetimes), totalFilter)))
 			df = pd.DataFrame()
 			df['Phi'] = list(compress(f['Phi60s2'][()], totalFilter))
@@ -237,9 +237,9 @@ def plot_heat_sigPhi(constFilter, constStr):
 				Phi60s2Mean.append(Phitemp.Phi.mean())
 			
 			Phibins = np.linspace(0, 1, 50)
-			timebins = np.linspace(utcTime[0], utcTime[-1], 288)
+			timebins = np.linspace(sorted(utcTime)[0], sorted(utcTime)[-1], 288)
 			
-			axs[1].plot(np.unique(list((compress(mdates.date2num(dt_utcdatetimes), totalFilter)))), Phi60s2Mean, 'r', linewidth=0.5)
+			axs[1].plot(np.unique(sorted(utcTime)), Phi60s2Mean, 'r', linewidth=0.5)
 			axs[1].hist2d(utcTime, df.Phi.astype(float), bins=[timebins,Phibins], norm = colors.LogNorm())
 			axs[1].xaxis.set_major_formatter(mdates.DateFormatter('%H'))
 			axs[1].xaxis.set_major_locator(mdates.HourLocator())
