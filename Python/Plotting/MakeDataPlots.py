@@ -8,6 +8,7 @@ from matplotlib import colors
 import matplotlib.dates as mdates
 from datetime import datetime
 from itertools import compress
+from mpl_toolkits.basemap import Basemap
 
 # NB: This script assumes that the file contains data from one day (or less)
 
@@ -355,11 +356,5 @@ if(config['plot_sky']):
 if(config['plot_heat_sigPhi']):
 	for const in constToPlot:
 		plot_heat_sigPhi(constFilter[const], const)
-
-# Make plot - Dots on map (TODO)
-# 'Longitude', 'Latitude'
-
-
-
 
 
