@@ -1,0 +1,38 @@
+# nonk8s
+apiVersion: "backstage.io/v1alpha1"
+kind: "Component"
+metadata:
+  name: "BiScEF"
+  tags:
+  - "public"
+spec:
+  type: "documentation"
+  lifecycle: "production"
+  owner: "n_yaktig_og_p_litelig_posisjon_til_alle_(nppa)"
+  system: "romvaer"
+---
+apiVersion: "backstage.io/v1alpha1"
+kind: "Group"
+metadata:
+  name: "security_champion_BiScEF"
+  title: "Security Champion BiScEF"
+spec:
+  type: "security_champion"
+  parent: "geodesi_security_champions"
+  members:
+  - "knutstanley"
+  children:
+  - "resource:BiScEF"
+---
+apiVersion: "backstage.io/v1alpha1"
+kind: "Resource"
+metadata:
+  name: "BiScEF"
+  links:
+  - url: "https://github.com/kartverket/BiScEF"
+    title: "BiScEF på GitHub"
+spec:
+  type: "repo"
+  owner: "security_champion_BiScEF"
+  dependencyOf:
+  - "component:BiScEF"
