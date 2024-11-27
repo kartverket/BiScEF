@@ -66,7 +66,7 @@ def load_data(filenames:list, station:str):
 			else:
 				datatemp = pd.read_csv(f'{fname}', names=varnames)
 			data = pd.concat([data, datatemp], axis=0, ignore_index=True)
-	
+			
 	# Check for minimum required columns
 	if (not 'GPSWeek' in data) or (len(data.GPSWeek) == 0):
 		print("ERROR: No GPSWeek in data.")
@@ -80,7 +80,10 @@ def load_data(filenames:list, station:str):
 	if (not 'Elevation' in data) or (len(data.Elevation) == 0):
 		print("ERROR: No Elevation in data.")
 		return False
-	
+
+	# Drop rows where the 'GPSWeek' column is not a numeric value. This is intended to purge header lines loaded from files where those were present.
+	data = data[data['GPSWeek'].str.isnumeric()].reset_index()
+
 	# Make conversions as necessary - for integer columns
 	convert_dict = {'UNIXTime': np.int64,
 			'GPSWeek': np.int32,
