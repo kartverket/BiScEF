@@ -82,7 +82,8 @@ def load_data(filenames:list, station:str):
 		return False
 
 	# Drop rows where the 'GPSWeek' column is not a numeric value. This is intended to purge header lines loaded from files where those were present.
-	data = data[data['GPSWeek'].str.isnumeric()].reset_index()
+	if(type(data['GPSWeek'][0]) == str):
+		data = data[data['GPSWeek'].str.isnumeric()].reset_index()
 
 	# Make conversions as necessary - for integer columns
 	convert_dict = {'UNIXTime': np.int64,
