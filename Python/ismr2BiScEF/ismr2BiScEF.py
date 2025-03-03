@@ -291,30 +291,35 @@ if 'S4cors1' in data_in:
 	hdf5File["S4cors1"].dims[0].attach_scale(hdf5File['UNIXTime'])
 
 if 'Phi01s1' in data_in:
+	data_in.loc[data_in['Phi01s1'] > 2, 'Phi01s1'] = np.nan  # Assume all values above 2 radians are errors and replace them with nan
 	Phi01s1 = hdf5File.create_dataset("Phi01s1", data=data_in['Phi01s1'], compression="gzip")
 	Phi01s1.attrs["Description"] = "1-second phase sigma on signal 1."
 	Phi01s1.attrs["Unit"] = "Radians"
 	hdf5File["Phi01s1"].dims[0].attach_scale(hdf5File['UNIXTime'])
 
 if 'Phi03s1' in data_in:
+	data_in.loc[data_in['Phi03s1'] > 2, 'Phi03s1'] = np.nan  # Assume all values above 2 radians are errors and replace them with nan
 	Phi03s1 = hdf5File.create_dataset("Phi03s1", data=data_in['Phi03s1'], compression="gzip")
 	Phi03s1.attrs["Description"] = "3-second phase sigma on signal 1."
 	Phi03s1.attrs["Unit"] = "Radians"
 	hdf5File["Phi03s1"].dims[0].attach_scale(hdf5File['UNIXTime'])
 
 if 'Phi10s1' in data_in:
+	data_in.loc[data_in['Phi10s1'] > 2, 'Phi10s1'] = np.nan  # Assume all values above 2 radians are errors and replace them with nan
 	Phi10s1= hdf5File.create_dataset("Phi10s1", data=data_in['Phi10s1'], compression="gzip")
 	Phi10s1.attrs["Description"] = "10-second phase sigma on signal 1."
 	Phi10s1.attrs["Unit"] = "Radians"
 	hdf5File["Phi10s1"].dims[0].attach_scale(hdf5File['UNIXTime'])
 
 if 'Phi30s1' in data_in:
+	data_in.loc[data_in['Phi30s1'] > 2, 'Phi30s1'] = np.nan  # Assume all values above 2 radians are errors and replace them with nan
 	Phi30s1 = hdf5File.create_dataset("Phi30s1", data=data_in['Phi30s1'], compression="gzip")
 	Phi30s1.attrs["Description"] = "30-second phase sigma on signal 1."
 	Phi30s1.attrs["Unit"] = "Radians"
 	hdf5File["Phi30s1"].dims[0].attach_scale(hdf5File['UNIXTime'])
 
 if 'Phi60s1' in data_in:
+	data_in.loc[data_in['Phi60s1'] > 2, 'Phi60s1'] = np.nan  # Assume all values above 2 radians are errors and replace them with nan
 	Phi60s1 = hdf5File.create_dataset("Phi60s1", data=data_in['Phi60s1'], compression="gzip")
 	Phi60s1.attrs["Description"] = "60-second phase sigma on signal 1."
 	Phi60s1.attrs["Unit"] = "Radians"
