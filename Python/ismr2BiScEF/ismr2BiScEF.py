@@ -281,14 +281,24 @@ if 'AvgCN0s1' in data_in:
 	hdf5File["AvgCN0s1"].dims[0].attach_scale(hdf5File['UNIXTime'])
 
 if 'S4s1' in data_in:
-	S4s1 = hdf5File.create_dataset("S4s1", data=data_in['S4s1'], compression="gzip")
-	S4s1.attrs["Description"] = "Corrected S4 on signal 1."
-	hdf5File["S4s1"].dims[0].attach_scale(hdf5File['UNIXTime'])
-
-if 'S4cors1' in data_in:
-	S4cors1 = hdf5File.create_dataset("S4cors1", data=data_in['S4cors1'], compression="gzip")
-	S4cors1.attrs["Description"] = "Correction to total S4 on signal 1."
-	hdf5File["S4cors1"].dims[0].attach_scale(hdf5File['UNIXTime'])
+	S4s1 = hdf5File.create_dataset("S4uncors1", data=data_in['S4s1'], compression="gzip")
+	S4s1.attrs["Description"] = "Uncorrected S4 on signal 1."
+	hdf5File["S4uncors1"].dims[0].attach_scale(hdf5File['UNIXTime'])
+	if 'S4cors1' in data_in:
+		S4cors1 = hdf5File.create_dataset("S4cors1", data=data_in['S4cors1'], compression="gzip")
+		S4cors1.attrs["Description"] = "Correction to total S4 on signal 1."
+		hdf5File["S4cors1"].dims[0].attach_scale(hdf5File['UNIXTime'])
+		
+		# Apply correction to create corrected dataset
+		S4uncor = hdf5File['S4uncors1'][()]
+		S4cor = hdf5File[f'S4cors1'][()]
+		with np.errstate(invalid='ignore'): # Suppresses warnings when taking sqrt of negative values 
+			S4 = np.sqrt(S4uncor**2 - S4cor**2)
+		np.nan_to_num(S4, copy=False);
+		
+		S4s1 = hdf5File.create_dataset("S4s1", data=S4, compression="gzip")
+		S4s1.attrs["Description"] = "Corrected S4 on signal 1."
+		hdf5File["S4s1"].dims[0].attach_scale(hdf5File['UNIXTime'])
 
 if 'Phi01s1' in data_in:
 	data_in.loc[data_in['Phi01s1'] > 2, 'Phi01s1'] = np.nan  # Assume all values above 2 radians are errors and replace them with nan
@@ -372,14 +382,24 @@ if 'AvgCN0s2' in data_in:
 	hdf5File["AvgCN0s2"].dims[0].attach_scale(hdf5File['UNIXTime'])
 
 if 'S4s2' in data_in:
-	S4s2 = hdf5File.create_dataset("S4s2", data=data_in['S4s2'], compression="gzip")
-	S4s2.attrs["Description"] = "Corrected S4 on signal 2."
-	hdf5File["S4s2"].dims[0].attach_scale(hdf5File['UNIXTime'])
-
-if 'S4cors2' in data_in:
-	S4cors2 = hdf5File.create_dataset("S4cors2", data=data_in['S4cors2'], compression="gzip")
-	S4cors2.attrs["Description"] = "Correction to total S4 on signal 2."
-	hdf5File["S4cors2"].dims[0].attach_scale(hdf5File['UNIXTime'])
+	S4s2 = hdf5File.create_dataset("S4uncors2", data=data_in['S4s2'], compression="gzip")
+	S4s2.attrs["Description"] = "Uncorrected S4 on signal 2."
+	hdf5File["S4uncors2"].dims[0].attach_scale(hdf5File['UNIXTime'])
+	if 'S4cors2' in data_in:
+		S4cors2 = hdf5File.create_dataset("S4cors2", data=data_in['S4cors2'], compression="gzip")
+		S4cors2.attrs["Description"] = "Correction to total S4 on signal 2."
+		hdf5File["S4cors2"].dims[0].attach_scale(hdf5File['UNIXTime'])
+		
+		# Apply correction to create corrected dataset
+		S4uncor = hdf5File['S4uncors2'][()]
+		S4cor = hdf5File[f'S4cors2'][()]
+		with np.errstate(invalid='ignore'): # Suppresses warnings when taking sqrt of negative values 
+			S4 = np.sqrt(S4uncor**2 - S4cor**2)
+		np.nan_to_num(S4, copy=False);
+		
+		S4s2 = hdf5File.create_dataset("S4s2", data=S4, compression="gzip")
+		S4s2.attrs["Description"] = "Corrected S4 on signal 2."
+		hdf5File["S4s2"].dims[0].attach_scale(hdf5File['UNIXTime'])
 
 if 'Phi01s2' in data_in:
 	Phi01s2 = hdf5File.create_dataset("Phi01s2", data=data_in['Phi01s2'], compression="gzip")
@@ -458,14 +478,24 @@ if 'AvgCN0s3' in data_in:
 	hdf5File["AvgCN0s3"].dims[0].attach_scale(hdf5File['UNIXTime'])
 
 if 'S4s3' in data_in:
-	S4s3 = hdf5File.create_dataset("S4s3", data=data_in['S4s3'], compression="gzip")
-	S4s3.attrs["Description"] = "Corrected S4 on signal 3."
-	hdf5File["S4s3"].dims[0].attach_scale(hdf5File['UNIXTime'])
-
-if 'S4cors3' in data_in:
-	S4cors3 = hdf5File.create_dataset("S4cors3", data=data_in['S4cors3'], compression="gzip")
-	S4cors3.attrs["Description"] = "Correction to total S4 on signal 3."
-	hdf5File["S4cors3"].dims[0].attach_scale(hdf5File['UNIXTime'])
+	S4s3 = hdf5File.create_dataset("S4uncors3", data=data_in['S4s3'], compression="gzip")
+	S4s3.attrs["Description"] = "Uncorrected S4 on signal 3."
+	hdf5File["S4uncors3"].dims[0].attach_scale(hdf5File['UNIXTime'])
+	if 'S4cors3' in data_in:
+		S4cors3 = hdf5File.create_dataset("S4cors3", data=data_in['S4cors3'], compression="gzip")
+		S4cors3.attrs["Description"] = "Correction to total S4 on signal 3."
+		hdf5File["S4cors3"].dims[0].attach_scale(hdf5File['UNIXTime'])
+		
+		# Apply correction to create corrected dataset
+		S4uncor = hdf5File['S4uncors3'][()]
+		S4cor = hdf5File[f'S4cors3'][()]
+		with np.errstate(invalid='ignore'): # Suppresses warnings when taking sqrt of negative values 
+			S4 = np.sqrt(S4uncor**2 - S4cor**2)
+		np.nan_to_num(S4, copy=False);
+		
+		S4s3 = hdf5File.create_dataset("S4s3", data=S4, compression="gzip")
+		S4s3.attrs["Description"] = "Corrected S4 on signal 3."
+		hdf5File["S4s3"].dims[0].attach_scale(hdf5File['UNIXTime'])
 
 if 'Phi01s3' in data_in:
 	Phi01s3 = hdf5File.create_dataset("Phi01s3", data=data_in['Phi01s3'], compression="gzip")
