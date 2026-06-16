@@ -76,7 +76,7 @@ def extract_data(const, datatype):
 
 
 def great_circle(coord1, coord2):
-	# coord = array of (longtitude, latitude) 
+	# coord = array of (longitude, latitude) 
 	# Returns great-circle distances, in meters, between each pair of coord1 vs coord2
 	R = 6378137    # WGS 84 semi-major axis of the Earth
 	SLMh = 350000   # Altitude of ionosphere shell
@@ -102,19 +102,28 @@ def plot_map_interpolated(datatype, values, lons, lats, timeStr, filenameStr):
 	gridlons, gridlats = np.meshgrid(gridlonsaxis, gridlatsaxis)
 
 	# Interpolators do not like duplicate coordinates (results in a singular matrix). So we have to eliminate duplicates.
-	uniquelons = set()
-	newlons = list()
-	newlats = list()
-	newvalues = list()
-	for i in range(0, len(lons)):
-		if not (lons[i] in uniquelons):
-			uniquelons.add(lons[i])
-			newlons.append(lons[i])
-			newlats.append(lats[i])
-			newvalues.append(values[i])
-	lons = newlons
-	lats = newlats
-	values = newvalues
+	if False: # Old, stupid code
+		uniquelons = set()
+		newlons = list()
+		newlats = list()
+		newvalues = list()
+		for i in range(0, len(lons)):
+			if not (lons[i] in uniquelons):
+				uniquelons.add(lons[i])
+				newlons.append(lons[i])
+				newlats.append(lats[i])
+				newvalues.append(values[i])
+		lons = newlons
+		lats = newlats
+		values = newvalues
+	# New, smart code (testing in progress...)
+	if False:
+		lonlats = np.asarray([lons, lats])
+		lonlats_unique, lonlats_unique_i = np.unique(lonlats, axis=0, return_index=True)
+		if(lonlats_unique.shape[0] > 0):
+			lons = lonlats_unique[:,0]
+			lats = lonlats_unique[:,1]
+			values = [values[i] for i in lonlats_unique_i]
 
 	# Coordinate transformer
 	transformer = Transformer.from_crs("EPSG:4326", "EPSG:4978", always_xy=True)    # From WGS-84 geographic to WGS-84 geocentric

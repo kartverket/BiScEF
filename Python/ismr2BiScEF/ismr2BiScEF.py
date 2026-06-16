@@ -107,11 +107,12 @@ def load_data(filenames:list, station:str):
 			if k in data:
 				data[k] = pd.to_numeric(data[k], errors='coerce').astype(np.float32)
 
-	# Make timestamps
+	# Make timestamps (leap seconds could be implemented more correct than what is done here...)
 	gpsEpoch = datetime.datetime(1980,1,6,0,0,0, tzinfo=datetime.timezone.utc)
 	unixEpoch = datetime.datetime(1970,1,1,0,0,0, tzinfo=datetime.timezone.utc)
-	leapSecDiff = datetime.timedelta(seconds=9) #leap seconds between 1970-1-1 (unix epoch) and  1980-1-6 (GPS epoch)
-	UNIXTime_datetimes = (gpsEpoch - unixEpoch + leapSecDiff) + pd.to_timedelta(data.GPSWeek*7, unit='days') + pd.to_timedelta(data.TOW, unit='second')
+	leapSecDiff_2017 = datetime.timedelta(seconds=18) # Number of leap seconds between GPS epoch and 2017 -- Valid from 2017 to 2026 (so far...)
+	#leapSecDiff_epochs = datetime.timedelta(seconds=9) #leap seconds between 1970-1-1 (unix epoch) and  1980-1-6 (GPS epoch)
+	UNIXTime_datetimes = (gpsEpoch - unixEpoch) + pd.to_timedelta(data.GPSWeek*7, unit='days') + pd.to_timedelta(data.TOW, unit='second') - leapSecDiff_2017
 	data['UNIXTime'] = [x.total_seconds() for x in UNIXTime_datetimes]
 	data['UNIXTime'] = data['UNIXTime'].astype(np.int64)
 

@@ -192,12 +192,12 @@ def plot_heat_sigPhi(constFilter, constStr):
 			else:
 				unitStr = '?'
 			
-			UNIX = list(compress(f['UNIXTime'][()], totalFilter))
+			UNIX = list(compress(dataTimes, totalFilter))
 			uniqTime = np.unique(sorted(UNIX))
 			utcTime = list((compress(mdates.date2num(dt_utcdatetimes), totalFilter)))
 			df = pd.DataFrame()
 			df['Phi'] = list(compress(f['Phi60s1'][()], totalFilter))
-			df['unixtime'] = list(compress(f['UNIXTime'][()], totalFilter))
+			df['unixtime'] = list(compress(dataTimes, totalFilter))
 			Phi60s1Mean = []
 			for t in uniqTime:
 				Phitemp = df.loc[df.unixtime == t]
@@ -226,12 +226,12 @@ def plot_heat_sigPhi(constFilter, constStr):
 			else:
 				unitStr = '?'
 			
-			UNIX = list(compress(f['UNIXTime'][()], totalFilter))
+			UNIX = list(compress(dataTimes, totalFilter))
 			uniqTime = np.unique(sorted(UNIX))
 			utcTime = list((compress(mdates.date2num(dt_utcdatetimes), totalFilter)))
 			df = pd.DataFrame()
 			df['Phi'] = list(compress(f['Phi60s2'][()], totalFilter))
-			df['unixtime'] = list(compress(f['UNIXTime'][()], totalFilter))
+			df['unixtime'] = list(compress(dataTimes, totalFilter))
 			Phi60s2Mean = []
 			for t in uniqTime:
 				Phitemp = df.loc[df.unixtime == t]
@@ -291,10 +291,11 @@ if not f:
 
 # Get info
 recCode = f.attrs['ReceiverCode']
-dateStr = datetime.strftime(datetime.utcfromtimestamp(min(f['UNIXTime'])), "%Y-%m-%d")
+dataTimes =  [np.int64(t) for t in f['UNIXTime'][()]]  # Ensure that the timetag has integer type
+dateStr = datetime.strftime(datetime.utcfromtimestamp(min(dataTimes)), "%Y-%m-%d")
 
 # Convert UNIX time array to list of UTC datetimes
-dt_utcdatetimes = [datetime.utcfromtimestamp(x) for x in f['UNIXTime'][()]]
+dt_utcdatetimes = [datetime.utcfromtimestamp(x) for x in dataTimes]
 
 # Construct boolean arrays for sorting/filtering
 constFilter = dict()
