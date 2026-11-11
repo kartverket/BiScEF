@@ -8,5 +8,5 @@ metadata:
 spec:
   type: "documentation"
   lifecycle: "production"
-  owner: "nppa"
+  owner: "gnss-utvikling"
   system: "romvaer"
